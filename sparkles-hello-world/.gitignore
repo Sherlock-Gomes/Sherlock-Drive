@@ -1,0 +1,17 @@
+# Fresh build directory
+_fresh/
+
+# npm dependencies
+node_modules/
+
+# Database
+db/
+
+# Env var
+.env
+
+# Files
+data-files/
+
+# Config
+bewcloud.config.ts
