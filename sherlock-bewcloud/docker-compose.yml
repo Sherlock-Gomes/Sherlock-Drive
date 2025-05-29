@@ -1,0 +1,33 @@
+services:
+  website:
+    image: ghcr.io/bewcloud/bewcloud:main # alternatively, you can use a specific version/tag, for greater stability
+    restart: always
+    ports:
+      - 127.0.0.1:8000:8000
+    mem_limit: '256m'
+    env_file:
+      - path: .env
+        required: true
+    volumes:
+      - ./data-files:/app/data-files
+
+  postgresql:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=fake
+      - POSTGRES_DB=bewcloud
+    restart: on-failure
+    volumes:
+      - bewcloud-db:/var/lib/postgresql/data
+    ports:
+      - 127.0.0.1:5432:5432
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: '256m'
+
+volumes:
+  bewcloud-db:
+    driver: local
