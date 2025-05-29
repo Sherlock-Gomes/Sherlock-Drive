@@ -5,7 +5,7 @@ services:
     image: filegator/filegator
     restart: always
     ports:
-      - "8080:8080"
+      - "7422:8080"
     volumes:
       # common mount points are listed here
       # make sure filegator can read/write to the mounted volume
